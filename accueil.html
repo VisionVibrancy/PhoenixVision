@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="fr">
 <head>
 <meta charset="utf-8"/>
@@ -78,7 +78,8 @@
 </style>
 </head>
 <body>
-  <iframe name="mc-target" style="display:none;width:0;height:0;border:0;" title="Mailchimp target"></iframe>
+  <!-- cible invisible pour Mailchimp -->
+  <iframe name="mc-target" id="mc-target" style="display:none;width:0;height:0;border:0;" title="Mailchimp target"></iframe>
 
 <header>
   <div class="container nav">
@@ -149,8 +150,12 @@
       <button class="close" id="closeModal" aria-label="Fermer">✕</button>
     </div>
 
-    <!-- 👉 Demain: remplace action="#" par l’URL Mailchimp -->
-    <form action="#" method="post" id="form-preinsc" class="form-body" target="mc-target" novalidate>
+    <!-- 🔗 Mailchimp branché + bons noms de champs -->
+    <form
+      action="https://visionvibrancy.us6.list-manage.com/subscribe/post?u=505480829f73480597694472f&amp;id=32ac31451a&amp;f_id=00f4cde1f0"
+      method="post" id="form-preinsc" name="mc-embedded-subscribe-form"
+      class="form-body" target="mc-target" accept-charset="UTF-8" novalidate>
+
       <div class="grid two">
         <div>
           <label for="ln">Nom</label>
@@ -168,19 +173,29 @@
 
       <div style="margin-top:12px">
         <label for="obj">Tes objectifs</label>
-        <textarea class="field" id="obj" name="OBJECTIF" rows="4" placeholder="Ex. retrouver de l’énergie, clarifier mon cap…"></textarea>
+        <textarea class="field" id="obj" name="MMERGE14" rows="4" placeholder="Ex. retrouver de l’énergie, clarifier mon cap…"></textarea>
       </div>
 
       <div style="margin-top:12px">
         <label for="jeudi">Jeudi 20 h (Paris)</label>
-        <select class="field" id="jeudi" name="JEUDI">
-          <option>OUI</option><option>NON</option>
+        <select class="field" id="jeudi" name="MMERGE15">
+          <option value=""></option>
+          <option value="Oui">Oui</option>
+          <option value="Non">Non</option>
         </select>
       </div>
 
       <div style="margin-top:12px;display:flex;align-items:center;gap:10px">
-        <input id="newsletter" name="NEWSLETTER" type="checkbox" checked />
-        <label for="newsletter" style="margin:0">Je m’abonne à la newsletter <strong>Vision Vibrancy</strong>.</label>
+        <input id="newsletter" name="group[12940][2]" type="checkbox" value="1" checked />
+        <label for="newsletter" style="margin:0">Je souhaite recevoir la newsletter <strong>“Créatrices en Action”</strong>.</label>
+      </div>
+
+      <!-- tag optionnel -->
+      <input type="hidden" name="tags" value="Phoenix Vision"/>
+
+      <!-- honeypot anti-spam Mailchimp -->
+      <div style="position:absolute; left:-5000px" aria-hidden="true">
+        <input type="text" name="b_505480829f73480597694472f_32ac31451a" tabindex="-1" value="">
       </div>
 
       <div class="actions-modal">
@@ -192,7 +207,7 @@
   </div>
 </div>
 
-<div class="toast" id="toast">Merci 🎉 Ton message est prêt à être envoyé.</div>
+<div class="toast" id="toast">Merci 🎉 Ta pré-inscription est envoyée.</div>
 
 <!-- FOOTER -->
 <footer>
@@ -222,36 +237,38 @@
   modal.addEventListener('click', (e)=>{ if(e.target===modal) close(); });
   document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close(); });
 
-  // Fallback mailto: si l'action du formulaire n'est pas encore renseignée (Mailchimp)
-  const form = document.getElementById('form-preinsc');
-  const toast = document.getElementById('toast');
-  form.addEventListener('submit', (ev) => {
-    if (!form.action || form.action === '#') {
-      ev.preventDefault();
-      const v = id => (document.getElementById(id)?.value || '').trim();
-      const subject = 'Pré-inscription Phoenix Vision (33€/mois)';
-      const body = [
-        'Bonjour Elise,', '',
-        'Je souhaite me pré-inscrire à l’abonnement Phoenix Vision.',
-        '',
-        'Nom : ' + v('ln'),
-        'Prénom : ' + v('fn'),
-        'Email : ' + v('em'),
-        'Objectifs : ' + v('obj'),
-        'Jeudi 20h (Paris) : ' + v('jeudi'),
-        '',
-        'Merci !'
-      ].join('\\n');
+  // Gestion retour Mailchimp (iframe) + message Merci
+  (function(){
+    const form   = document.getElementById('form-preinsc');
+    const iframe = document.getElementById('mc-target');
+    const toast  = document.getElementById('toast');
+    const submitBtn = form.querySelector('button[type="submit"], .submit');
 
-      window.location.href = 'mailto:visionvibrancy@gmail.com'
-        + '?subject=' + encodeURIComponent(subject)
-        + '&body=' + encodeURIComponent(body);
+    let justSubmitted = false;
 
+    form.addEventListener('submit', function(){
+      justSubmitted = true;
+      if (submitBtn){ submitBtn.disabled = true; submitBtn.textContent = 'Envoi…'; }
+      // filet de sécurité si pas de load (réseau lent / adblock)
+      setTimeout(() => {
+        if (justSubmitted){
+          justSubmitted = false;
+          if (submitBtn){ submitBtn.disabled = false; submitBtn.textContent = 'Valider'; }
+          close();
+          if (toast){ toast.textContent = 'Merci ! Vérifie ta boîte mail ✨'; toast.style.display = 'block'; setTimeout(()=> toast.style.display='none', 3500); }
+        }
+      }, 8000);
+    });
+
+    iframe.addEventListener('load', function(){
+      if (!justSubmitted) return;
+      justSubmitted = false;
+      if (submitBtn){ submitBtn.disabled = false; submitBtn.textContent = 'Valider'; }
       close();
-      toast.style.display = 'block';
-      setTimeout(()=> toast.style.display='none', 5200);
-    }
-  });
+      if (toast){ toast.textContent = 'Merci ! Ta pré-inscription est envoyée 🎉'; toast.style.display = 'block'; setTimeout(()=> toast.style.display='none', 3500); }
+      form.reset();
+    });
+  })();
 
   if (location.hash === '#inscription' || location.hash === '#openModal') { open(); }
 </script>
