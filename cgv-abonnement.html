@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CGV — Abonnement Phoenix Vision</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0a0a0a;--ink:#fff;--gold:#E3C57A;--muted:#d9d6cf}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,sans-serif}
+  a{color:var(--gold);text-decoration:none}
+  header{padding:14px 20px;border-bottom:1px solid rgba(232,220,200,.1)}
+  .brand{display:flex;align-items:center;gap:10px}
+  .brand img{height:70px}
+  main{max-width:900px;margin:32px auto;padding:0 20px}
+  h1,h2{font-family:"Cormorant Garamond",serif}
+  h1{margin:0 0 16px}
+  h2{margin:26px 0 10px}
+  .card{border:1px solid rgba(232,220,200,.12);border-radius:14px;padding:18px;background:rgba(227,197,122,.04)}
+  .muted{color:var(--muted)}
+  .btn{border:1px solid var(--gold);padding:8px 14px;border-radius:999px;color:var(--ink)}
+  footer{padding:26px 20px;text-align:center;border-top:1px solid rgba(232,220,200,.1)}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <a href="accueil.html" class="btn">← Accueil</a>
+    <img src="logo.png" alt="Vision Vibrancy">
+    <strong>CGV — Abonnement Phoenix Vision</strong>
+  </div>
+</header>
+
+<main>
+  <div class="card">
+    <h1>Conditions générales de vente — Abonnement Phoenix Vision</h1>
+    <p class="muted">
+      Éditeur : <strong>Vision Vibrancy LP</strong> — 
+      Adresse : 5 South Charlotte Street, Edinburgh EH2 4AN, Scotland, United Kingdom — 
+      N° d’identification : SL037640 — 
+      Email : <a href="mailto:visionvibrancy@gmail.com">visionvibrancy@gmail.com</a>
+    </p>
+
+    <h2>1. Objet</h2>
+    <p>Les présentes CGV régissent l’abonnement « Phoenix Vision » (coaching de groupe en ligne, replays, documents d’accompagnement).</p>
+
+    <h2>2. Prix & facturation</h2>
+    <p>Le tarif est de <strong>33 €/mois</strong>, TTC. L’abonnement est reconduit automatiquement chaque mois jusqu’à résiliation par le membre.</p>
+
+    <h2>3. Résiliation</h2>
+    <p>L’abonnement est <strong>résiliable à tout moment</strong> par envoi d’un e-mail à <a href="mailto:visionvibrancy@gmail.com">visionvibrancy@gmail.com</a>. La résiliation prend effet à la fin de la période de facturation en cours. Le mois entamé reste dû.</p>
+
+    <h2>4. Accès & replays</h2>
+    <p>Les lives (Zoom/FB) ont lieu en principe le <strong>jeudi à 20 h (heure de Paris)</strong>. Les replays sont mis à disposition sous 24–48 h au sein du groupe Facebook « Phoenix Vision ».</p>
+
+    <h2>5. Annulation / no-show</h2>
+    <p>Les sessions manquées ne donnent pas lieu à remboursement. Les replays permettent un rattrapage.</p>
+
+    <h2>6. Nature de l’accompagnement</h2>
+    <p>Coaching holistique bien-être. Il ne s’agit ni d’un acte médical, ni d’une thérapie. Le membre reste responsable de ses décisions et de sa mise en action.</p>
+
+    <h2>7. Données personnelles</h2>
+    <p>Les données (notamment l’adresse e-mail via Mailchimp) servent à la gestion de l’abonnement, aux communications et à la facturation. Droits d’accès/rectification/suppression sur simple demande par e-mail.</p>
+
+    <h2>8. Propriété intellectuelle</h2>
+    <p>Les contenus, méthodes, supports et enregistrements sont protégés. Toute reproduction, diffusion ou partage public sans autorisation est interdit.</p>
+
+    <h2>9. Droit applicable</h2>
+    <p>Les présentes CGV sont soumises au droit du Royaume-Uni. En cas de litige, compétence des tribunaux d’Édimbourg (Scotland).</p>
+  </div>
+</main>
+
+<footer>
+  © <span id="year"></span> Vision Vibrancy LP — <a href="mentions.html">Mentions légales</a>
+</footer>
+<script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+</body>
+</html>

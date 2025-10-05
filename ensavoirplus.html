@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>En savoir plus — Phoenix Vision</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0a0a0a;--ink:#fff;--gold:#E3C57A;--muted:#d9d6cf}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,sans-serif}
+  a{color:var(--ink);text-decoration:none}
+  header{padding:12px 20px;border-bottom:1px solid rgba(232,220,200,.1);display:flex;justify-content:space-between;align-items:center}
+  .brand{display:flex;align-items:center;gap:10px}
+  .brand img{height:100px}
+  .brand-title{font-family:"Cormorant Garamond",serif;font-size:26px}
+  .btn{border:1px solid var(--gold);padding:8px 14px;border-radius:999px;color:var(--ink)}
+
+  main{padding:40px 20px;max-width:1200px;margin:auto}
+  h1,h2,h3{font-family:"Cormorant Garamond",serif}
+  .muted{color:var(--muted)}
+  .card{border:1px solid rgba(232,220,200,.12);border-radius:16px;padding:16px;background:linear-gradient(180deg, rgba(227,197,122,.05), rgba(227,197,122,0))}
+  .grid{display:grid;gap:22px}
+  @media(min-width:980px){ .cols-2{grid-template-columns:2fr 1.1fr} }
+
+  .fit-card{border:1px solid var(--gold);border-radius:16px;padding:20px;background:rgba(20,20,20,.9);display:flex;flex-direction:column;justify-content:center;min-height:360px;box-shadow:0 0 0 1px rgba(227,197,122,.25) inset,0 0 16px rgba(227,197,122,.12)}
+  .fit-card h3{text-align:center;margin:0 0 10px;position:relative;padding-bottom:8px}
+  .fit-card h3::after{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:0;width:160px;height:2px;background:linear-gradient(90deg, transparent, var(--gold), transparent)}
+  .fit-card ul{margin:12px 0 0;padding-left:0;list-style:none}
+  .fit-card li{margin:10px 0;position:relative;padding-left:22px}
+  .fit-card li::before{content:"◆";position:absolute;left:0;color:var(--gold);line-height:1}
+
+  footer{padding:36px 0;text-align:center;border-top:1px solid rgba(232,220,200,.1)}
+  footer, footer *{color:var(--ink) !important}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <img src="logo.png" alt="Vision Vibrancy">
+    <span class="brand-title">Phoenix Vision — En savoir plus</span>
+  </div>
+  <a class="btn" href="accueil.html">Retour</a>
+</header>
+
+<main>
+  <h1>Phoenix Vision — l’abonnement qui te remet au centre</h1>
+  <div class="grid cols-2">
+    <div>
+      <p class="muted">Sans engagement : <strong>33 €/mois</strong>, tu rejoins des lives hebdomadaires le <strong>jeudi à 20 h (Paris)</strong>. Tu peux venir quand tu peux : les replays (24–48 h) sont dans le groupe Facebook <strong>Phoenix Vision</strong>. On met l’accent sur l’<strong>énergie vitale</strong>, la clarté et des pas simples à poser chaque semaine.</p>
+
+      <h2>Pourquoi un abonnement ?</h2>
+      <p class="muted">Pour rendre le coaching accessible aux budgets serrés, tout en gardant un cadre régulier et humain. On avance plus vite <em>ensemble</em> : la clarté de l’un·e bénéficie à tou·te·s.</p>
+
+      <h2>Ce que tu vas vivre</h2>
+      <ul class="muted">
+        <li>1 live hebdo (60–75 min) — coaching holistique, respiration, recentrage.</li>
+        <li>Des <strong>replays</strong> disponibles sous 24–48 h.</li>
+        <li>Des exercices & journaling pour consolider.</li>
+        <li>Un espace <strong>Facebook Phoenix Vision</strong> : annonces, liens, replays.</li>
+        <li>Bonus : priorité et <strong>−20 % VIP</strong> sur la Retraite@Home.</li>
+      </ul>
+
+      <div style="margin-top:22px">
+        <a class="btn" href="accueil.html#inscription">Je me pré-inscris</a>
+      </div>
+    </div>
+
+    <aside class="fit-card">
+      <h3>C’est pour toi si…</h3>
+      <ul>
+        <li>Tu veux redevenir la <strong>cheffe d’orchestre</strong> de ta vie.</li>
+        <li>Tu as besoin d’un <strong>cadre doux</strong> mais régulier.</li>
+        <li>Tu aimes apprendre par <strong>résonance</strong> et co-création.</li>
+        <li>Tu préfères l’essentiel à la surcharge d’infos.</li>
+      </ul>
+    </aside>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    © <span id="year"></span> Vision Vibrancy LP — Phoenix Vision ·
+    <a href="mentions.html" style="color:#E3C57A">Mentions légales</a> ·
+    <a href="cgv-abonnement.html" style="color:#E3C57A">CGV Abonnement</a>
+  </div>
+</footer>
+<script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+</body>
+</html>

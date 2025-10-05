@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Phoenix Vision — Abonnement</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#0a0a0a; --ink:#ffffff; --muted:#d9d6cf; --gold:#E3C57A;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,sans-serif}
+  a{text-decoration:none;color:var(--ink)}
+  .container{max-width:1200px;margin-inline:auto;padding:0 20px}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,#0a0a0a 70%,rgba(10,10,10,.6));border-bottom:1px solid rgba(232,220,200,.08)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand img{height:120px;width:auto}
+  .brand-title{font-family:"Cormorant Garamond",serif;font-weight:700;font-size:28px}
+  .btn{display:inline-flex;align-items:center;gap:.6rem;border:1px solid var(--gold);color:var(--ink);padding:.5rem 1rem;border-radius:999px;font-weight:600;background:transparent;box-shadow:0 0 0 1px rgba(227,197,122,.25) inset,0 0 10px rgba(227,197,122,.10);cursor:pointer}
+  .btn:hover{background:rgba(227,197,122,.08)}
+
+  /* HERO à 3 colonnes */
+  .hero{position:relative;isolation:isolate;overflow:hidden;padding:32px 0 24px;border-bottom:1px solid rgba(232,220,200,.08)}
+  .hero .grid{display:grid;gap:18px;align-items:center}
+  @media(min-width:980px){ .hero .grid{grid-template-columns:1fr minmax(320px, 460px) 1fr} }
+  @media(max-width:979px){ .hero .grid{grid-template-columns:1fr} }
+
+  .panel{border:1px solid rgba(227,197,122,.28);border-radius:16px;padding:18px;background:linear-gradient(180deg,rgba(227,197,122,.06),rgba(227,197,122,0))}
+  .panel h2{font-family:"Cormorant Garamond",serif;margin:0 0 8px;font-size:clamp(22px,3.5vw,28px)}
+  .panel p{margin:8px 0;color:var(--muted)}
+  .panel ul{margin:10px 0 0;padding-left:18px;color:var(--muted)}
+  .panel li{margin:6px 0}
+  .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+
+  .phoenix-wrap{position:relative;min-height:420px}
+  .phoenix{position:relative;z-index:1;width:100%;height:auto;object-fit:contain;object-position:center;filter:drop-shadow(0 0 18px rgba(227,197,122,.25))}
+  .stars{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.75;
+    background:
+      radial-gradient(1.6px 1.6px at 16% 20%, #E3C57A 70%, transparent 71%),
+      radial-gradient(1.4px 1.4px at 86% 26%, #c8a96b 70%, transparent 71%),
+      radial-gradient(1.2px 1.2px at 60% 78%, #E3C57A 70%, transparent 71%),
+      radial-gradient(1.8px 1.8px at 36% 64%, #E3C57A 70%, transparent 71%);
+    animation:twinkle 3.6s ease-in-out infinite alternate
+  }
+  @keyframes twinkle{from{filter:drop-shadow(0 0 6px #E3C57A)}to{filter:drop-shadow(0 0 16px #E3C57A)}}
+
+  h1{font-family:"Cormorant Garamond",serif;font-size:clamp(28px,5vw,46px);margin:0 0 10px;text-align:center}
+  .subtitle{text-align:center;color:var(--muted);margin:0 0 14px}
+
+  /* Modal form */
+  .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.55);backdrop-filter:blur(2px);z-index:50;padding:20px}
+  .modal[aria-hidden="false"]{display:flex}
+  .modal-card{width:min(760px,100%);border-radius:16px;background:#111;border:1px solid rgba(232,220,200,.25);box-shadow:0 0 28px rgba(227,197,122,.18);color:var(--ink)}
+  .modal-header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px 8px}
+  .modal-title{font-family:"Cormorant Garamond",serif;font-size:24px;margin:0}
+  .close{border:1px solid var(--gold);background:transparent;border-radius:999px;padding:.3rem .6rem;cursor:pointer;color:var(--ink)}
+  .form-body{padding:6px 20px 18px}
+  label{display:block;margin:6px 0 6px;color:var(--ink);font-size:.95rem}
+  .field{width:100%;padding:12px 14px;border-radius:12px;background:#0f0f0f;color:var(--ink);outline:none;border:1px solid var(--gold);box-shadow:0 0 0 1px rgba(227,197,122,.25) inset,0 0 14px rgba(227,197,122,.12)}
+  .field:focus{box-shadow:0 0 0 3px rgba(227,197,122,.22),0 0 22px rgba(227,197,122,.18)}
+  .grid{display:grid;gap:14px}
+  @media(min-width:720px){ .grid.two{grid-template-columns:1fr 1fr} }
+  .hint{font-size:.9rem;color:var(--muted);margin-top:4px}
+  .actions-modal{display:flex;gap:10px;justify-content:flex-end;margin:14px 0 18px;padding:0 20px}
+  .submit{border:1px solid var(--gold);color:var(--ink);background:transparent;border-radius:999px;padding:.7rem 1rem;font-weight:700;box-shadow:0 0 0 1px rgba(227,197,122,.25) inset,0 0 12px rgba(227,197,122,.12);cursor:pointer}
+  .submit:hover{background:rgba(227,197,122,.10)}
+  .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:24px;z-index:60;background:#101010;color:var(--ink);border:1px solid var(--gold);border-radius:12px;padding:12px 16px;display:none}
+
+  footer{padding:36px 0;border-top:1px solid rgba(232,220,200,.08);text-align:center}
+  footer, footer *{color:var(--ink) !important}
+</style>
+</head>
+<body>
+  <iframe name="mc-target" style="display:none;width:0;height:0;border:0;" title="Mailchimp target"></iframe>
+
+<header>
+  <div class="container nav">
+    <div class="brand">
+      <img src="logo.png" alt="Vision Vibrancy">
+      <span class="brand-title">Phoenix Vision — Abonnement</span>
+    </div>
+    <nav>
+      <a class="btn" href="ensavoirplus.html">En savoir plus</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="container" style="padding:20px 0 6px">
+    <h1>Déploie tes ailes</h1>
+    <p class="subtitle">Coaching de groupe — <strong>33 €/mois</strong> · <strong>résiliable à tout moment</strong> · <strong>jeudi 20 h (heure de Paris)</strong></p>
+  </section>
+
+  <!-- HERO 3 colonnes -->
+  <section class="hero">
+    <div class="container grid">
+      <!-- Colonne gauche -->
+      <aside class="panel">
+        <h2>Ce que tu obtiens</h2>
+        <ul>
+          <li>Un live hebdo (60–75 min) — venir quand tu peux.</li>
+          <li>Replays sous 24–48 h dans le groupe Facebook <strong>Phoenix Vision</strong>.</li>
+          <li>Exercices & journaling pour ancrer tes avancées.</li>
+          <li>Énergie vitale : respiration, recentrage, conscience du corps.</li>
+          <li>Co-création et Surprises tout au long de l'année.</li>
+          <li>Bonus : priorité & <strong>−20 % VIP</strong> sur Retraite@Home.</li>
+        </ul>
+        <div class="actions">
+          <a class="btn" href="ensavoirplus.html">En savoir plus</a>
+          <button class="btn" id="openModal" type="button">Je me pré-inscris</button>
+        </div>
+      </aside>
+
+      <!-- Colonne centre : phénix -->
+      <div class="phoenix-wrap">
+        <img class="phoenix" src="phoenix.png" alt="Phénix doré — Phoenix Vision">
+        <div class="stars" aria-hidden="true"></div>
+      </div>
+
+      <!-- Colonne droite -->
+      <aside class="panel">
+        <h2>À qui ça s’adresse</h2>
+        <p class="muted">Aux personnes, qui veulent reprendre les commandes avec douceur et puissance — et devenir la <strong>cheffe d’orchestre</strong> de leur vie.</p>
+        <ul>
+          <li>Tu veux avancer sans te sentir seule.</li>
+          <li>Tu aimes les pas concrets, semaine après semaine.</li>
+          <li>Tu as envie d’un cadre simple, bienveillant, sans blabla.</li>
+        </ul>
+        <div class="actions">
+          <a class="btn" href="#inscription" id="openModal2">Je me pré-inscris</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<!-- MODALE PRE-INSCRIPTION -->
+<div class="modal" id="modal" aria-hidden="true" aria-labelledby="modalTitle" role="dialog">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h2 class="modal-title" id="modalTitle">Pré-inscription — Phoenix Vision</h2>
+      <button class="close" id="closeModal" aria-label="Fermer">✕</button>
+    </div>
+
+    <!-- 👉 Demain: remplace action="#" par l’URL Mailchimp -->
+    <form action="#" method="post" id="form-preinsc" class="form-body" target="mc-target" novalidate>
+      <div class="grid two">
+        <div>
+          <label for="ln">Nom</label>
+          <input class="field" id="ln" name="LNAME" required />
+        </div>
+        <div>
+          <label for="fn">Prénom</label>
+          <input class="field" id="fn" name="FNAME" required />
+        </div>
+        <div>
+          <label for="em">Adresse e-mail</label>
+          <input class="field" id="em" name="EMAIL" type="email" required />
+        </div>
+      </div>
+
+      <div style="margin-top:12px">
+        <label for="obj">Tes objectifs</label>
+        <textarea class="field" id="obj" name="OBJECTIF" rows="4" placeholder="Ex. retrouver de l’énergie, clarifier mon cap…"></textarea>
+      </div>
+
+      <div style="margin-top:12px">
+        <label for="jeudi">Jeudi 20 h (Paris)</label>
+        <select class="field" id="jeudi" name="JEUDI">
+          <option>OUI</option><option>NON</option>
+        </select>
+      </div>
+
+      <div style="margin-top:12px;display:flex;align-items:center;gap:10px">
+        <input id="newsletter" name="NEWSLETTER" type="checkbox" checked />
+        <label for="newsletter" style="margin:0">Je m’abonne à la newsletter <strong>Vision Vibrancy</strong>.</label>
+      </div>
+
+      <div class="actions-modal">
+        <button type="button" class="btn" id="closeModal2">Annuler</button>
+        <button type="submit" class="submit">Valider</button>
+      </div>
+      <p class="hint">Tarif : <strong>33 €/mois</strong>. Abonnement <strong>résiliable à tout moment</strong> par e-mail — voir <a href="cgv-abonnement.html" style="color:var(--gold)">CGV</a>.</p>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast">Merci 🎉 Ton message est prêt à être envoyé.</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    © <span id="year"></span> Vision Vibrancy LP — Phoenix Vision ·
+    <a href="mentions.html" style="color:#E3C57A">Mentions légales</a> ·
+    <a href="cgv-abonnement.html" style="color:#E3C57A">CGV Abonnement</a><br/>
+    <small>
+      Vision Vibrancy LP — 5 South Charlotte Street, Edinburgh EH2 4AN, Scotland, United Kingdom ·
+      N° d’identification : SL037640 ·
+      Email : <a href="mailto:visionvibrancy@gmail.com" style="color:#E3C57A">visionvibrancy@gmail.com</a>
+    </small>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const modal = document.getElementById('modal');
+  const open  = () => modal.setAttribute('aria-hidden','false');
+  const close = () => modal.setAttribute('aria-hidden','true');
+
+  document.getElementById('openModal')?.addEventListener('click', open);
+  document.getElementById('openModal2')?.addEventListener('click', e => { e.preventDefault(); open(); });
+  document.getElementById('closeModal')?.addEventListener('click', close);
+  document.getElementById('closeModal2')?.addEventListener('click', close);
+  modal.addEventListener('click', (e)=>{ if(e.target===modal) close(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close(); });
+
+  // Fallback mailto: si l'action du formulaire n'est pas encore renseignée (Mailchimp)
+  const form = document.getElementById('form-preinsc');
+  const toast = document.getElementById('toast');
+  form.addEventListener('submit', (ev) => {
+    if (!form.action || form.action === '#') {
+      ev.preventDefault();
+      const v = id => (document.getElementById(id)?.value || '').trim();
+      const subject = 'Pré-inscription Phoenix Vision (33€/mois)';
+      const body = [
+        'Bonjour Elise,', '',
+        'Je souhaite me pré-inscrire à l’abonnement Phoenix Vision.',
+        '',
+        'Nom : ' + v('ln'),
+        'Prénom : ' + v('fn'),
+        'Email : ' + v('em'),
+        'Objectifs : ' + v('obj'),
+        'Jeudi 20h (Paris) : ' + v('jeudi'),
+        '',
+        'Merci !'
+      ].join('\\n');
+
+      window.location.href = 'mailto:visionvibrancy@gmail.com'
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(body);
+
+      close();
+      toast.style.display = 'block';
+      setTimeout(()=> toast.style.display='none', 5200);
+    }
+  });
+
+  if (location.hash === '#inscription' || location.hash === '#openModal') { open(); }
+</script>
+</body>
+</html>
